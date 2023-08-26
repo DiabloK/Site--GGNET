@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>Prototipo</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,9 +33,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-code"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">MANUTENÇÕES<sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -159,7 +159,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
+                    <!-- Topbar Search
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -171,7 +171,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -200,66 +200,25 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
+                        <!-- Nav Item - Alerts 
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
+                                <!-- Counter - Alerts 
                                 <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
+                            </a>-->
+                            
 
-                        <!-- Nav Item - Messages -->
+                        <!-- Nav Item - Messages 
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
+                                <!-- Counter - Messages 
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
-                            <!-- Dropdown - Messages -->
+                            <!-- Dropdown - Messages 
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -315,7 +274,7 @@
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
-                        </li>
+                        </li>-->
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -358,8 +317,116 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+
+                    <div class="col">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Cadastror de Manutenções</h6>
+                                </div>
+                                <div class="card-body">
+                                    <input type="hidden" name="acao" value="cadastrarManutencao">
+                                <div class="mb-3 form-group">
+                                    <label>Protocolo ISP:</label>
+                                    <input type="text" class="form-control" name="protocolo" required>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label>Horário Inicial:</label>
+                                    <input type="date" class="form-control" name="dataInicio" required>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label>Horário Final:</label>
+                                    <input type="date" class="form-control" name="dataFim" required>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label>Ponto de Acesso</label>
+                                    <select name="pontoAcesso" class="form-select">
+                                        <?php getPontosAcesso(); ?>
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label>Localização:</label>
+                                    <input type="text" class="form-control" name="localizacao" required>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label>Observação:</label>
+                                    <textarea type="text-area" class="form-control" name="observacao"> </textarea>
+                                </div>
+
+                                <!--botão -->
+                                <div class="mb-3 form-group">
+                                    <label>Prioridade:</label>
+                                    <br>
+                                    <div class="btn-group" role="group" aria-label="Prioridade">
+                                        <label class="btn btn-danger btn-icon-split mr-2">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                            </span>
+                                            <input 
+                                                type="radio" 
+                                                class="radio-input" 
+                                                name="prioridade" 
+                                                value="1" 
+                                                style="opacity: 0; position: absolute; width: 0; height: 0;" 
+                                                onchange="updateRadioStyle(this);"
+                                            >
+                                            <span class="text">Crítica</span>
+                                        </label>
+                                    </div>
+                                    <div class="btn-group" role="group" aria-label="Prioridade">
+                                        <label class="btn btn-warning btn-icon-split mr-2">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                            </span>
+                                            <input 
+                                                type="radio" 
+                                                class="radio-input" 
+                                                name="prioridade" 
+                                                value="1" 
+                                                style="opacity: 0; position: absolute; width: 0; height: 0;" 
+                                                onchange="updateRadioStyle(this);"
+                                            >
+                                            <span class="text">Média</span>
+                                        </label>
+                                    </div>
+                                    <div class="btn-group" role="group" aria-label="Prioridade">
+                                        <label class="btn btn-info btn-icon-split mr-2">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                            </span>
+                                            <input 
+                                                type="radio" 
+                                                class="radio-input" 
+                                                name="prioridade" 
+                                                value="1" 
+                                                style="opacity: 0; position: absolute; width: 0; height: 0;" 
+                                                onchange="updateRadioStyle(this);"
+                                            >
+                                            <span class="text">Baixa</span>
+                                        </label>
+                                    </div>
+                                    <script>
+                                        function updateRadioStyle(radioButton) {
+                                            var parentLabel = radioButton.parentNode;
+                                            
+                                            if (radioButton.checked) {
+                                                parentLabel.style.border = '2px solid black'; // Aplica a borda quando selecionado
+                                            } else {
+                                                parentLabel.style.border = '1px solid #ccc';  // Volta ao estilo normal quando não selecionado
+                                            }
+                                        }
+                                        </script>
+                                </div>
+                                <input type="hidden" name="idUsuarioCriador" value="<?php echo retornaAtributosLogado()["id"];">
+                                <input type="hidden" name="status" value="Em analise(Regional)">
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -371,7 +438,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Your Website 2023</span>
                     </div>
                 </div>
             </footer>
