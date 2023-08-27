@@ -208,7 +208,7 @@
                                 <!-- Counter - Alerts 
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>-->
-                            
+
 
                         <!-- Nav Item - Messages 
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -283,8 +283,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -319,23 +318,25 @@
 
 
                     <div class="col">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Cadastror de Manutenções</h6>
-                                </div>
-                                <div class="card-body">
-                                    <input type="hidden" name="acao" value="cadastrarManutencao">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Cadastror de Manutenções</h6>
+                            </div>
+                            <div class="card-body">
+                                <input type="hidden" name="acao" value="cadastrarManutencao">
                                 <div class="mb-3 form-group">
                                     <label>Protocolo ISP:</label>
                                     <input type="text" class="form-control" name="protocolo" required>
                                 </div>
                                 <div class="mb-3 form-group">
                                     <label>Horário Inicial:</label>
-                                    <input type="date" class="form-control" name="dataInicio" required>
+                                    <input type="datetime-local" class="form-control" name="dataInicio"
+                                        id="horarioInicial" required>
                                 </div>
                                 <div class="mb-3 form-group">
                                     <label>Horário Final:</label>
-                                    <input type="date" class="form-control" name="dataFim" required>
+                                    <input type="datetime-local" class="form-control" name="dataFim" id="horarioFinal"
+                                        required>
                                 </div>
                                 <div class="mb-3 form-group">
                                     <label>Ponto de Acesso</label>
@@ -351,8 +352,85 @@
                                     <label>Observação:</label>
                                     <textarea type="text-area" class="form-control" name="observacao"> </textarea>
                                 </div>
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", function () {
+                                        const horarioInicialInput = document.getElementById("horarioInicial");
 
+                                        horarioInicialInput.addEventListener("input", function () {
+                                            const selectedDate = new Date(horarioInicialInput.value);
+                                            const minutes = selectedDate.getMinutes();
+                                            const hours = selectedDate.getHours();
+
+                                            if (minutes < 15) {
+                                                selectedDate.setHours(hours - 3);
+                                                selectedDate.setMinutes(0);
+                                                horarioInicialInput.value = selectedDate.toISOString().slice(0, 16);
+                                            } else if (minutes >= 15 && minutes <= 29) {
+                                                selectedDate.setMinutes(30);
+                                                selectedDate.setHours(hours - 3);
+                                                horarioInicialInput.value = selectedDate.toISOString().slice(0, 16);
+                                            }
+                                            else if (minutes >= 30 && minutes <= 44) {
+                                                selectedDate.setMinutes(30);
+                                                selectedDate.setHours(hours - 3);
+                                                horarioInicialInput.value = selectedDate.toISOString().slice(0, 16);
+                                            }
+                                            else if (minutes >= 45) {
+                                                selectedDate.setMinutes(0);
+                                                selectedDate.setHours(hours - 2);
+                                                horarioInicialInput.value = selectedDate.toISOString().slice(0, 16);
+                                            }
+                                        });
+
+                                    });
+                                </script>
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", function () {
+                                        const horarioFinalInput = document.getElementById("horarioFinal");
+                                        const horarioInicialInput = document.getElementById("horarioInicial");
+                                
+                                        horarioFinalInput.addEventListener("input", function () {
+                                            const selectedDate = new Date(horarioFinalInput.value);
+                                            const minutes = selectedDate.getMinutes();
+                                            const hours = selectedDate.getHours();
+                                            const selectedDateInicial = new Date(horarioInicialInput.value);
+                                            const minutesInicial = selectedDateInicial.getMinutes();
+                                            const hoursInicial = selectedDateInicial.getHours();
+                                            
+                                            if (hours == hoursInicial && minutes == minutesInicial) {
+                                                selectedDate.setHours(hours - 3);
+                                                selectedDate.setMinutes(minutes + 30);
+                                            }
+                                
+                                            if (minutes < 15) {
+                                                selectedDate.setHours(hours - 3);
+                                                selectedDate.setMinutes(0);
+
+                                            } else if (minutes >= 15 && minutes <= 29) {
+                                                selectedDate.setMinutes(30);
+                                                selectedDate.setHours(hours - 3);
+                                            } else if (minutes >= 30 && minutes <= 44) {
+                                                selectedDate.setMinutes(30);
+                                                selectedDate.setHours(hours - 3);
+                                            } else if (minutes >= 45) {
+                                                selectedDate.setMinutes(0);
+                                                selectedDate.setHours(hours - 2);
+                                               
+                                            }
+                                
+                                            // Nova condição adicionada
+                                            if (hours == hoursInicial && minutes == minutesInicial) {
+                                                selectedDate.setHours(hours - 3);
+                                                selectedDate.setMinutes(minutes + 30);
+                                            }
+                                
+                                            horarioFinalInput.value = selectedDate.toISOString().slice(0, 16);
+                                        });
+                                    });
+                                </script>
+                                
                                 <!--botão -->
+
                                 <div class="mb-3 form-group">
                                     <label>Prioridade:</label>
                                     <br>
@@ -361,14 +439,9 @@
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-exclamation-triangle"></i>
                                             </span>
-                                            <input 
-                                                type="radio" 
-                                                class="radio-input" 
-                                                name="prioridade" 
-                                                value="1" 
-                                                style="opacity: 0; position: absolute; width: 0; height: 0;" 
-                                                onchange="updateRadioStyle(this);"
-                                            >
+                                            <input type="radio" class="radio-input" name="prioridade" value="1"
+                                                style="opacity: 0; position: absolute; width: 0; height: 0;"
+                                                onchange="updateRadioStyle(this);">
                                             <span class="text">Crítica</span>
                                         </label>
                                     </div>
@@ -377,14 +450,9 @@
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-exclamation-triangle"></i>
                                             </span>
-                                            <input 
-                                                type="radio" 
-                                                class="radio-input" 
-                                                name="prioridade" 
-                                                value="1" 
-                                                style="opacity: 0; position: absolute; width: 0; height: 0;" 
-                                                onchange="updateRadioStyle(this);"
-                                            >
+                                            <input type="radio" class="radio-input" name="prioridade" value="2"
+                                                style="opacity: 0; position: absolute; width: 0; height: 0;"
+                                                onchange="updateRadioStyle(this);">
                                             <span class="text">Média</span>
                                         </label>
                                     </div>
@@ -393,59 +461,67 @@
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-exclamation-triangle"></i>
                                             </span>
-                                            <input 
-                                                type="radio" 
-                                                class="radio-input" 
-                                                name="prioridade" 
-                                                value="1" 
-                                                style="opacity: 0; position: absolute; width: 0; height: 0;" 
-                                                onchange="updateRadioStyle(this);"
-                                            >
+                                            <input type="radio" class="radio-input" name="prioridade" value="3"
+                                                style="opacity: 0; position: absolute; width: 0; height: 0;"
+                                                onchange="updateRadioStyle(this);">
                                             <span class="text">Baixa</span>
                                         </label>
                                     </div>
+                                    <style>
+                                        .selected-label {
+                                            border: 2px solid black;
+                                        }
+                                    </style>
                                     <script>
                                         function updateRadioStyle(radioButton) {
-                                            var parentLabel = radioButton.parentNode;
-                                            
+                                            var buttonGroups = document.querySelectorAll(".btn-group");
+
+                                            buttonGroups.forEach(function (buttonGroup) {
+                                                var labelsInGroup = buttonGroup.querySelectorAll("label");
+
+                                                labelsInGroup.forEach(function (label) {
+                                                    label.classList.remove("selected-label");
+                                                });
+                                            });
+
                                             if (radioButton.checked) {
-                                                parentLabel.style.border = '2px solid black'; // Aplica a borda quando selecionado
-                                            } else {
-                                                parentLabel.style.border = '1px solid #ccc';  // Volta ao estilo normal quando não selecionado
+                                                var parentLabel = radioButton.parentElement;
+                                                parentLabel.classList.add("selected-label");
                                             }
                                         }
-                                        </script>
+                                    </script>
                                 </div>
-                                <input type="hidden" name="idUsuarioCriador" value="<?php echo retornaAtributosLogado()["id"];">
+                                <input type="hidden" name="idUsuarioCriador"
+                                    value="<?php echo retornaAtributosLogado()[" id"];">
                                 <input type="hidden" name="status" value="Em analise(Regional)">
                                 <div class="mb-3">
                                     <button type="submit" class="btn btn-primary">Enviar</button>
                                 </div>
-                                </div>
                             </div>
-
                         </div>
 
                     </div>
 
                 </div>
-                <!-- /.container-fluid -->
 
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2023</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+            <!-- /.container-fluid -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2023</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
