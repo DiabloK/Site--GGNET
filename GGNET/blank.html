@@ -397,31 +397,43 @@
                                             const minutesInicial = selectedDateInicial.getMinutes();
                                             const hoursInicial = selectedDateInicial.getHours();
                                             
-                                            if (hours == hoursInicial && minutes == minutesInicial) {
-                                                selectedDate.setHours(hours - 3);
-                                                selectedDate.setMinutes(minutes + 30);
-                                            }
-                                
                                             if (minutes < 15) {
-                                                selectedDate.setHours(hours - 3);
-                                                selectedDate.setMinutes(0);
+                                                selectedDate.setMinutes(0)
+                                                if (hoursInicial == hours && minutesInicial == 0) {
+                                                    selectedDate.setMinutes(30);                                                  
+                                                }
 
-                                            } else if (minutes >= 15 && minutes <= 29) {
+                                            }
+                                            else if (minutes >= 15 && minutes <= 29) {
                                                 selectedDate.setMinutes(30);
-                                                selectedDate.setHours(hours - 3);
+                                                
+                                                if (hours == hoursInicial && 30 == minutesInicial) {
+                                                    selectedDate.setMinutes(0);    
+                                                    selectedDate.setHours(hours - 2);                                           
+                                                }
+                                                else{
+                                                    selectedDate.setHours(hours - 3);
+                                                }
                                             } else if (minutes >= 30 && minutes <= 44) {
                                                 selectedDate.setMinutes(30);
-                                                selectedDate.setHours(hours - 3);
+                                                
+                                                if (hours == hoursInicial && 30 == minutesInicial) {
+                                                    selectedDate.setMinutes(0); 
+                                                    selectedDate.setHours(hours - 2);                                               
+                                                }
+                                                else{
+                                                    selectedDate.setHours(hours - 3);
+                                                }
+
                                             } else if (minutes >= 45) {
                                                 selectedDate.setMinutes(0);
-                                                selectedDate.setHours(hours - 2);
-                                               
-                                            }
-                                
-                                            // Nova condição adicionada
-                                            if (hours == hoursInicial && minutes == minutesInicial) {
-                                                selectedDate.setHours(hours - 3);
-                                                selectedDate.setMinutes(minutes + 30);
+                                                
+                                                if (hours == hoursInicial && 0 == minutesInicial) {
+                                                    selectedDate.setMinutes(30);
+                                                    selectedDate.setHours(hours - 3);                                                  
+                                                }
+                                                else{
+                                                    selectedDate.setHours(hours - 2);}
                                             }
                                 
                                             horarioFinalInput.value = selectedDate.toISOString().slice(0, 16);
